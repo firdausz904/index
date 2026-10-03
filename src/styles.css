@@ -1,0 +1,58 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #d8fffd;
+  background: #010305;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { margin: 0; min-height: 100%; width: 100%; }
+body { min-height: 100vh; overflow: hidden; background: #010305; }
+button { font: inherit; }
+
+.app-shell { position: relative; min-height: 100vh; overflow: hidden; background: radial-gradient(circle at 50% 48%, #06161a 0%, #02080b 38%, #010305 72%); }
+.space-background { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.star { position: absolute; width: 1px; height: 1px; border-radius: 50%; background: #bafdfa; box-shadow: 0 0 5px rgba(0, 238, 230, .7); animation: twinkle 3s ease-in-out infinite; }
+@keyframes twinkle { 0%,100% { transform: scale(.6); } 50% { transform: scale(1.7); } }
+
+.topbar { position: absolute; z-index: 5; inset: 0 0 auto 0; display: flex; align-items: center; justify-content: space-between; padding: 26px 34px; pointer-events: none; }
+.brand { display: flex; gap: 12px; align-items: center; text-shadow: 0 0 18px rgba(0, 255, 245, .22); }
+.brand-mark { font-size: 26px; color: #00e6df; }
+.brand-name { font-size: 13px; letter-spacing: .24em; font-weight: 700; }
+.brand-subtitle { margin-top: 4px; color: #578987; font-size: 9px; letter-spacing: .24em; }
+.hint { color: #416967; font-size: 9px; letter-spacing: .18em; }
+
+.globe-stage { position: relative; z-index: 1; min-height: 100vh; display: grid; place-items: center; }
+.globe-stage > div:not(.scanline):not(.country-overlay):not(.country-hover-label) { width: 100% !important; height: 100% !important; }
+.globe-stage canvas { display: block; }
+.scanline { position: absolute; z-index: 3; inset: 0; pointer-events: none; background: repeating-linear-gradient(to bottom, transparent 0, transparent 4px, rgba(0, 255, 245, .012) 5px); mix-blend-mode: screen; }
+
+.country-overlay, .country-hover-label { position: absolute; z-index: 6; pointer-events: none; }
+.country-overlay { left: 7%; bottom: 13%; width: min(390px, 42vw); padding: 18px 20px; border-left: 1px solid rgba(0, 239, 231, .8); background: linear-gradient(90deg, rgba(1, 17, 20, .86), rgba(1, 17, 20, .24)); backdrop-filter: blur(8px); box-shadow: -20px 0 60px rgba(0, 234, 226, .05); }
+.country-title { display: flex; align-items: center; gap: 12px; }
+.country-flag { font-size: 30px; }
+.eyebrow { color: #4e8f8b; font-size: 8px; letter-spacing: .24em; }
+h1 { margin: 4px 0 0; color: #dcfffd; font-size: clamp(20px, 2.4vw, 31px); letter-spacing: .04em; font-weight: 500; }
+.country-details { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; margin-top: 18px; }
+.country-details div { min-width: 0; }
+.country-details span { display: block; color: #477a77; font-size: 7px; letter-spacing: .18em; margin-bottom: 4px; }
+.country-details strong { display: block; color: #b5e8e5; font-size: 11px; line-height: 1.35; font-weight: 500; }
+.country-hover-label { bottom: 12%; left: 50%; transform: translateX(-50%); color: #9dfffb; border: 1px solid rgba(0, 235, 226, .4); background: rgba(0, 18, 20, .72); padding: 8px 13px; font-size: 10px; letter-spacing: .18em; backdrop-filter: blur(6px); }
+
+.footer { position: absolute; z-index: 7; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: space-between; padding: 20px 34px; color: #345e5b; font-size: 8px; letter-spacing: .18em; }
+.footer button { pointer-events: auto; border: 1px solid rgba(0, 217, 210, .22); background: rgba(0, 18, 20, .38); color: #4c8c88; padding: 8px 11px; cursor: pointer; font-size: 8px; letter-spacing: .14em; }
+.footer button:hover:not(:disabled) { border-color: rgba(0, 240, 232, .65); color: #a2fffb; }
+.footer button:disabled { opacity: .3; cursor: default; }
+
+@media (max-width: 700px) {
+  .topbar { padding: 18px; }
+  .hint { display: none; }
+  .country-overlay { left: 18px; right: 18px; bottom: 70px; width: auto; }
+  .country-details { gap: 10px; }
+  .footer { padding: 14px 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star { animation: none; }
+}
